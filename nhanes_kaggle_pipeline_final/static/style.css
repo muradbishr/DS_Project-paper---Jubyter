@@ -1,0 +1,158 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7f8;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 480px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 12px;
+    background: #2c7be5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1a68d1;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+}
+
+.result-box {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background: #f4f6f8;
+    margin-bottom: 15px;
+}
+
+.risk-label {
+    font-size: 14px;
+    color: #555;
+}
+
+.risk-value {
+    font-size: 42px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.risk-low {
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.risk-medium {
+    color: #f57c00;
+    font-weight: bold;
+}
+
+.risk-high {
+    color: #c62828;
+    font-weight: bold;
+}
+
+.note {
+    font-size: 13px;
+    color: #666;
+}
+
+.contrib-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.contrib-list li {
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.shap-img {
+    max-width: 100%;
+    display: block;
+    margin: auto;
+}
+
+.disclaimer {
+    font-size: 11px;
+    color: #888;
+    text-align: center;
+}
+
+
+.bmi-box {
+    background: #f7f9fc;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.bmi-box button {
+    margin-top: 8px;
+}
+
+.hidden {
+    display: none;
+}
+
+.bmi-calc {
+    margin-top: 10px;
+    padding: 10px;
+    border-left: 3px solid #4CAF50;
+    background: #f9f9f9;
+}
+
+.bmi-calc input {
+    margin-bottom: 8px;
+}
+
+.bmi-calc button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}

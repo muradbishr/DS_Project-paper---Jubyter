@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diabetes Risk Result</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Diabetes Risk Prediction</h2>
+
+    <!-- MAIN RESULT -->
+    <div class="result-box">
+        <p class="risk-label">Estimated Risk Probability</p>
+
+        <p class="risk-value">
+            {{ "%.1f"|format(prob * 100) }}%
+        </p>
+
+        {% if prob < 0.2 %}
+            <p class="risk-low">Low estimated risk</p>
+        {% elif prob < 0.5 %}
+            <p class="risk-medium">Moderate estimated risk</p>
+        {% else %}
+            <p class="risk-high">High estimated risk</p>
+        {% endif %}
+    </div>
+
+    <p class="note">
+        This probability reflects the model’s estimate based on the provided inputs.
+    </p>
+
+    <hr>
+
+    <!-- FEATURE CONTRIBUTIONS -->
+    <h3>What influenced this prediction?</h3>
+
+    <p class="note">
+        Positive values increase risk, negative values reduce risk.
+    </p>
+
+    <ul class="contrib-list">
+        {% for name, val in contributions %}
+            <li>
+                <strong>{{ name }}:</strong>
+                {{ "%.4f"|format(val) }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <!-- SHAP IMAGE -->
+    <h3>Visual explanation</h3>
+
+    {% if shap_png and shap_png|length > 0 %}
+        <img class="shap-img"
+             src="data:image/png;base64,{{ shap_png }}"
+             alt="SHAP explanation plot">
+    {% else %}
+        <p class="note">
+            SHAP visualization not available for this prediction.
+        </p>
+    {% endif %}
+
+    <hr>
+
+    <p class="disclaimer">
+        This tool is for research and educational purposes only and does not replace
+        professional medical advice.
+    </p>
+
+</div>
+
+</body>
+</html>

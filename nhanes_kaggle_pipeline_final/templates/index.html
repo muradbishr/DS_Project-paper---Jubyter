@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diabetes Risk Predictor</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Diabetes Risk Predictor</h2>
+
+    <p class="subtitle">
+        Enter basic health information below.
+        <br>
+        <small>Values should be based on recent measurements if available.</small>
+    </p>
+
+    <form action="/predict" method="post">
+
+        <!-- AGE -->
+        <label>Age</label>
+        <input type="number" name="age" min="18" max="100"
+               placeholder="e.g. 45" required>
+        <small>Enter your age in years (18–100)</small>
+
+        <!-- GENDER -->
+        <label>Gender</label>
+        <select name="gender" required>
+            <option value="">Choose one</option>
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+        </select>
+        <small>Select your biological sex</small>
+
+        <!-- RACE -->
+        <label>Race / Ethnicity</label>
+        <select name="race" required>
+            <option value="">Choose one</option>
+            <option value="1">Mexican American</option>
+            <option value="2">Other Hispanic</option>
+            <option value="3">White</option>
+            <option value="4">Black / African American</option>
+            <option value="5">Other</option>
+        </select>
+        <small>Used only for fairness analysis</small>
+
+        <hr>
+
+
+        <!-- BMI -->
+        <label>Body Mass Index (BMI)</label>
+        <input type="number" step="0.1" min="15" max="60"
+              name="bmi" id="bmi" placeholder="e.g. 27.5" required>
+        <small>
+    <a href="#" onclick="toggleBMICalc(); return false;">
+        Calculate BMI from height & weight
+    </a>
+</small>
+
+<div id="bmi-calc" class="bmi-calc hidden">
+    <label>Height (cm)</label>
+    <input type="number" id="height_cm" min="100" max="230" placeholder="e.g. 170">
+
+    <label>Weight (kg)</label>
+    <input type="number" id="weight_kg" min="30" max="250" placeholder="e.g. 75">
+
+    <button type="button" onclick="calculateBMI()">Use this BMI</button>
+</div>
+
+        <!-- BP -->
+        <label>Systolic Blood Pressure</label>
+        <input type="number" min="80" max="220"
+               name="bp_sys_mean" placeholder="e.g. 120" required>
+        <small>Top number (mmHg)</small>
+
+        <label>Diastolic Blood Pressure</label>
+        <input type="number" min="40" max="140"
+               name="bp_dia_mean" placeholder="e.g. 80" required>
+        <small>Bottom number (mmHg)</small>
+
+        <hr>
+
+        <!-- CHOLESTEROL -->
+        <label>Total Cholesterol</label>
+        <input type="number" min="100" max="400"
+               name="chol_total" placeholder="e.g. 190" required>
+        <small>Measured in mg/dL</small>
+
+        <label>HDL Cholesterol (Good Cholesterol)</label>
+        <input type="number" min="10" max="120"
+               name="chol_hdl" placeholder="e.g. 50" required>
+        <small>Higher values are better</small>
+
+        <hr>
+
+        <!-- SMOKING -->
+        <label>Do you currently smoke?</label>
+        <select name="smoke_now" required>
+            <option value="">Choose one</option>
+            <option value="1">Yes</option>
+            <option value="2">No</option>
+        </select>
+
+        <!-- FAMILY -->
+        <label>Family history of diabetes?</label>
+        <select name="family_diabetes" required>
+            <option value="">Choose one</option>
+            <option value="1">Yes</option>
+            <option value="2">No</option>
+        </select>
+        <small>Parents or siblings</small>
+
+        <!-- ACTIVITY -->
+        <label>Physically active?</label>
+        <select name="physically_active" required>
+            <option value="">Choose one</option>
+            <option value="1">Yes</option>
+            <option value="2">No</option>
+        </select>
+        <small>Regular exercise or active lifestyle</small>
+
+        <button type="submit">Estimate Diabetes Risk</button>
+
+        <p class="disclaimer">
+            This tool is for research and educational purposes only.
+        </p>
+
+    </form>
+</div>
+
+<script>
+function calculateBMI() {
+    const height = document.getElementById("height_cm").value;
+    const weight = document.getElementById("weight_kg").value;
+
+    if (!height || !weight) {
+        alert("Please enter both height and weight.");
+        return;
+    }
+
+    const height_m = height / 100;
+    const bmi = weight / (height_m * height_m);
+
+    document.getElementById("bmi").value = bmi.toFixed(1);
+}
+</script>
+
+<script>
+function toggleBMICalc() {
+    const box = document.getElementById("bmi-calc");
+    box.classList.toggle("hidden");
+}
+
+function calculateBMI() {
+    const h = document.getElementById("height_cm");
+    const w = document.getElementById("weight_kg");
+    const bmi = document.getElementById("bmi");
+
+    if (!h || !w || !bmi) return;
+
+    const height = parseFloat(h.value);
+    const weight = parseFloat(w.value);
+
+    if (!height || !weight) {
+        alert("Please enter both height and weight.");
+        return;
+    }
+
+    const bmiValue = weight / Math.pow(height / 100, 2);
+    bmi.value = bmiValue.toFixed(1);
+
+    document.getElementById("bmi-calc").classList.add("hidden");
+}
+</script>
+
+</body>
+</html>
